@@ -14,6 +14,23 @@ class Dictionary
   define_method(:==) do |another_dictionary|
     self.name() == another_dictionary.name()
   end
+
+  define_method(:words) do 
+    dictionary_words = []
+    words = DB.exec("SELECT * FROM words WHERE dictionary_id = #{self.id()};")
+    words.each() do |word|
+      name = word.fetch("name")
+      definition = word.fetch("definition")
+      dictionary_id = word.fetch("dictionary_id").to_i()
+      dictionary_words.push(Word.new({ :name => name, :definition => definition, :dictionary_id => dictionary_id}))
+    end
+  dictionary_words
+  end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM dictionaries WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM words WHERE dictionary_id = #{self.id()};")
+  end
   
   define_singleton_method(:all) do
     returned_dictionaries = DB.exec("SELECT * FROM dictionaries;")
@@ -31,7 +48,7 @@ class Dictionary
     Dictionary.all().each() do |dictionary|
       if dictionary.id().==(id)
         found_dictionary = dictionary
-      end
+        end
     end
       found_dictionary
   end
