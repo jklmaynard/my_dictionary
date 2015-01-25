@@ -40,4 +40,14 @@ describe(Dictionary) do
     expect(Dictionary.all()).to (eq([]))
     end
   end 
+  
+  describe('.find') do
+    it('finds an individual dictionary by id') do
+      dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })
+      dictionary1.save()
+      dictionary2 = Dictionary.new({ :name => "my other dictionary", :id => nil })
+      dictionary2.save()
+      expect(Dictionary.find(dictionary2.id())).to eq(dictionary2)
+    end
+  end
 end

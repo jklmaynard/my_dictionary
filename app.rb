@@ -25,3 +25,8 @@ post("/dictionaries") do
   @dictionaries = Dictionary.all()
   erb(:index)
 end
+
+get("/dictionaries/:id") do
+  @dictionary = Dictionary.find(params.fetch("id").to_i())
+  erb(:dictionary)
+end

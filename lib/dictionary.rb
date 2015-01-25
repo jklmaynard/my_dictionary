@@ -24,5 +24,15 @@ class Dictionary
       dictionaries.push(Dictionary.new({ :name => name, :id => id }))
     end
     dictionaries
-  end    
+  end  
+  
+  define_singleton_method(:find) do |id|
+    found_dictionary = nil
+    Dictionary.all().each() do |dictionary|
+      if dictionary.id().==(id)
+        found_dictionary = dictionary
+      end
+    end
+      found_dictionary
+  end
 end

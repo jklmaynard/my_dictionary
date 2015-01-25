@@ -1,4 +1,4 @@
-<h1>Build Your Very Own Dictionary!</h2>
+<h1>Start Your Very Own Dictionary!</h1>
 
 <h3>Add a Dictionary</h3>
 
@@ -13,7 +13,7 @@
   <h3>Click on a Dictionary to Add and See Your Words</h3>
     <ul>
       <% @dictionaries.each() do |dictionary| %>
-        <li><a href="dictionaries/<%= dictionary.id() %><%= dictionary.name() %></a></li>
+        <li><a href="dictionaries/<%= dictionary.id() %>"><%= dictionary.name() %></a></li>
       <% end %>
     </ul
 <% end %>
