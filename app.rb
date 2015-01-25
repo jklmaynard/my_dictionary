@@ -14,5 +14,14 @@ end
 DB = PG.connect({ :dbname => "dictionary" })
 
 get("/") do
-  "Hello world!"
+  @dictionaries = Dictionary.all()
+  erb(:index)
+end
+
+post("/dictionaries") do 
+  dictionary_name = params.fetch("dictionary_name")
+  dictionary = Dictionary.new({ :name => dictionary_name, :id => nil })
+  dictionary.save()
+  @dictionaries = Dictionary.all()
+  erb(:index)
 end

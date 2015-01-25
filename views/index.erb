@@ -1,0 +1,19 @@
+<h1>Build Your Very Own Dictionary!</h2>
+
+<h3>Add a Dictionary</h3>
+
+<form action="/dictionaries" method="post">
+  <label for="dictionary_name">Dictionary Name:</label>
+  <input id="dictionary_name" name="dictionary_name" type="text">
+
+  <button type="Submit">Add Dictionary!</button>
+</form>
+
+<% if @dictionaries.any?() %>
+  <h3>Click on a Dictionary to Add and See Your Words</h3>
+    <ul>
+      <% @dictionaries.each() do |dictionary| %>
+        <li><a href="dictionaries/<%= dictionary.id() %><%= dictionary.name() %></a></li>
+      <% end %>
+    </ul
+<% end %>
