@@ -39,9 +39,9 @@ describe(Dictionary) do
     it('returns an array of words for that particular dictionary') do
       dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })
       dictionary1.save()
-      word1 = Word.new({ :name => "Oxeneed", :definition => "Command to be quiet", :dictionary_id => dictionary1.id()})
+      word1 = Word.new({ :name => "Oxeneed", :definition => "Command to be quiet", :dictionary_id => dictionary1.id(), :id => nil })
       word1.save()
-      word2 = Word.new({ :name => "apple", :definition => "a fruit", :dictionary_id => dictionary1.id()})
+      word2 = Word.new({ :name => "apple", :definition => "a fruit", :dictionary_id => dictionary1.id(), :id => nil })
       word2.save()
       expect(dictionary1.words()).to eq([word1, word2])
     end

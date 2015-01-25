@@ -1,3 +1,30 @@
 <h1>The Words of <%= @dictionary.name() %></h1>
 
+<h3>Add a Word!</h3>
+
+<form action="/words" method="post">
+  <input id="dictionary_id" name="dictionary_id" type="hidden" value="<%= @dictionary.id() %>">
+  <label for="word">Add your word here:</label><br>
+  <input id="word" name="word" type="text"><br>
+    <label for="definition">Add a 'Definition':</label><br>
+  <input id="definition" name="definition" type="text"><br>
+  <br>
+  <button type="submit">Add word</button>
+</form>
+
+<% if @dictionary.words().any? %>
+<h3>Here are your words:</h3>
+
+<ul>
+  <% @dictionary.words().each() do |word| %>
+  <li><% word.name() %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<h3>No words yet added!</h3>
+
+<% end %>
+    
+    
 <a href="/">Back to Home Page</a>

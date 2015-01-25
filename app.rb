@@ -30,3 +30,18 @@ get("/dictionaries/:id") do
   @dictionary = Dictionary.find(params.fetch("id").to_i())
   erb(:dictionary)
 end
+
+post("/words") do
+  name = params.fetch("word")
+  definition = params.fetch("definition")
+  dictionary_id = params.fetch("dictionary_id").to_i()
+  word = Word.new({ :name => name, :definition => definition, :dictionary_id => dictionary_id})
+  word.save()
+  @dictionary = Dictionary.find(dictionary_id)
+  erb(:dictionary)
+end
+
+get("/words/:id") do
+  @word = Word.find(params.fetch("id").to_i())
+  erb(:word)
+end

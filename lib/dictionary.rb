@@ -22,7 +22,8 @@ class Dictionary
       name = word.fetch("name")
       definition = word.fetch("definition")
       dictionary_id = word.fetch("dictionary_id").to_i()
-      dictionary_words.push(Word.new({ :name => name, :definition => definition, :dictionary_id => dictionary_id}))
+      id = word.fetch("id").to_i()
+      dictionary_words.push(Word.new({ :name => name, :definition => definition, :dictionary_id => dictionary_id, :id => nil }))
     end
   dictionary_words
   end
