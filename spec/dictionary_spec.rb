@@ -1,65 +1,43 @@
-require('rspec')
-require('dictionary')
-require('pry')
+require('spec_buddy')
 
-describe(Term) do
-  before() do
-    Term.clear()
-  end
-
-  describe("store") do
-    it("stores word & definitions into their variable arrays") do
-      test_term = Term.new()
-      test_term.store("carrot", "a delicious vegetable")
-      test_term.save()
-      expect(Term.all()).to(eq([["carrot"], ["a delicious vegetable"]]))
+describe(Dictionary) do 
+  
+  describe('#name') do
+    it('returns the name of a dictionary') do
+      dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })  
+      expect(dictionary1.name()).to eq("my dictionary")
     end
   end
   
-#   describe("retrieve") do
-#     it("retrieves a stored value by it's key") do
-#       test_term = Term.new()
-#       test_term.store("carrot", "a delicious vegetable")
-#       expect(test_term.retrieve("carrot")).to(eq("a delicious vegetable"))
-#     end
-#   end
-
-#     it("retrieves any stored value by its key") do
-#       test_term = Term.new()
-#       test_term.store("kitten", "cute")
-#       expect(test_term.retrieve("kitten")).to(eq(["cute"]))
-#     end
-#   end
-
-#   describe("add_def") do
-#     it("pushes a second/third definition in the array of defs for a word") do
-#       test_term = Term.new()
-#       test_term.store("cat", "nasty")
-#       test_term.add_def("cat", "smelly")
-#       expect(test_term.retrieve("cat")).to(eq(["nasty", "smelly"]))
-#     end
-#   end
-
-#   describe("post_word") do
-#     it("displays the words you've added to the dictionary") do
-#     test_term = Term.new()
-#     test_term.store("kitten", "cute")
-#     expect(test_term.post_word()).to(eq(["kitten"]))
-#   end
-# end
-
-# describe("post_definition") do
-#   it("displays the definition") do
-#   test_term = Term.new()
-#   test_term.store("kitten", "cute")
-#   expect(test_term.post_definition()).to(eq(["cute"]))
-#   end
-# end
-
-#   describe(".all") do
-#     it("is empty at first") do
-#       expect(Term.all()).to(eq([]))
-#     end
-#   end
-
+  describe('#id') do
+    it('returns the id of a dictionary as an instance of a fixnum') do
+      dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })  
+      dictionary1.save()
+      expect(dictionary1.id()).to be_an_instance_of(Fixnum)
+    end
+  end
+  
+  describe('#save') do
+    it("saves the dictionary into an array") do
+      dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })  
+      dictionary1.save()
+      expect(Dictionary.all()).to eq([dictionary1])
+    end
+  end
+  
+  describe('#==') do
+    it('is the same dictionary if it has the same name') do
+      dictionary1 = Dictionary.new({ :name => "my dictionary", :id => nil })
+      dictionary1.save()
+      dictionary2 = Dictionary.new({ :name => "my dictionary", :id => nil })
+      dictionary2.save()
+      expect(dictionary1).to eq(dictionary2)
+    end
+  end
+  
+  describe('.all') do
+    it('is empty at first') do
+    expect(Dictionary.all()).to (eq([]))
+    end
+  end 
 end
