@@ -14,17 +14,20 @@
 
 <% if @dictionary.words().any? %>
 <h3>Here are your words:</h3>
-
-<ul>
-  <% @dictionary.words().each() do |word| %>
-  <li><a href="words/<%= word.id() %>"><%= word.name() %></a></li>
-  <% end %>
-</ul>
-
+  <ul>
+    <% @dictionary.words().each() do |word| %>
+    <li><a href="words/<%= word.id() %>"><%= word.name() %></a></li>
+    <% end %>
+  </ul>
 <% else %>
-<h3>No words yet added!</h3>
-
+  <h3>No words yet added!</h3>
 <% end %>
-    
-    
+<br>
+<form action="/dictionaries/<%= @dictionary.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  
+  <button type="submit">Terminate Dictionary</button>
+</form>
+<br>
+
 <a href="/">Back to Home Page</a>

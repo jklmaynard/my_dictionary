@@ -31,6 +31,13 @@ get("/dictionaries/:id") do
   erb(:dictionary)
 end
 
+delete("/dictionaries/:id") do
+  @dictionary = Dictionary.find(params.fetch("id").to_i())
+  @dictionary.delete()
+  @dictionaries = Dictionary.all()
+  erb(:submission)
+end
+
 post("/words") do
   name = params.fetch("word")
   definition = params.fetch("definition")
@@ -41,7 +48,7 @@ post("/words") do
   erb(:dictionary)
 end
 
-# get("/words/:id") do
-#   @word = Word.find(params.fetch("id").to_i())
-#   erb(:word)
-# end
+get("/words/:id") do
+  @word = Word.find(params.fetch("id").to_i())
+  erb(:word)
+end
