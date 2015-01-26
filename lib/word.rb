@@ -18,7 +18,7 @@ class Word
   end
     
   define_singleton_method(:all) do
-    returned_words = DB.exec("SELECT * FROM words")
+    returned_words = DB.exec("SELECT * FROM words;")
     words = []
     returned_words.each() do |word|
       name = word.fetch("name")
